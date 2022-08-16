@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  eat-and-go:
+    image: {{ image_tag }}
+    container_name: "{{ appId }}"
+    restart: on-failure
+    tty: true
+    privileged: true
+    environment:
+      - APOLLO_APPID=100003064
+      - APOLLO_ADDR={{ env_var[env].apollo_addr }}
+      - APOLLO_NAMESPACE=config
+      - APP_ENV=online
+      - ENVIRONMENT={{ env }}
+    ports:
+      - "9094:9094"
+    volumes:
+      - /var/log/eat-and-go/:/var/log/eat-and-go

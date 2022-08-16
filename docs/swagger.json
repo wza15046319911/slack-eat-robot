@@ -1,0 +1,151 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/sd/cpu": {
+            "get": {
+                "description": "CPUCheck",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sd"
+                ],
+                "summary": "CPUCheck checks the cpu usage.",
+                "responses": {
+                    "200": {
+                        "description": "OK - Load average: xx, xx, xx | Cores: x",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sd/disk": {
+            "get": {
+                "description": "DiskCheck",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sd"
+                ],
+                "summary": "DiskCheck checks the disk usage.",
+                "responses": {
+                    "200": {
+                        "description": "OK - Free space: xxxMB (xxGB) / xxxMB (xxGB) | Used: xx%",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sd/health": {
+            "get": {
+                "description": "HealthCheck",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sd"
+                ],
+                "summary": "HealthCheck shows `OK` as the ping-pong result.",
+                "responses": {
+                    "200": {
+                        "description": "OK ",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sd/ram": {
+            "get": {
+                "description": "RAMCheck",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sd"
+                ],
+                "summary": "RAMCheck checks the disk usage.",
+                "responses": {
+                    "200": {
+                        "description": "OK - Free space: xxMB (xxGB) / xxMB (xxGB) | Used: xx%",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/sd/version": {
+            "get": {
+                "description": "versionCheck",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "sd"
+                ],
+                "summary": "VersionCheck show the version info as Running status",
+                "responses": {
+                    "200": {
+                        "description": "service version info ",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/slack": {
+            "post": {
+                "description": "Handle APP_MENTION event or other call back event sent from slack",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "event"
+                ],
+                "summary": "api",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.Response": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

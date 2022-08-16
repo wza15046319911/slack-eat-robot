@@ -1,0 +1,97 @@
+definitions:
+  handler.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /sd/cpu:
+    get:
+      consumes:
+      - application/json
+      description: CPUCheck
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'OK - Load average: xx, xx, xx | Cores: x'
+          schema:
+            $ref: '#/definitions/handler.Response'
+      summary: CPUCheck checks the cpu usage.
+      tags:
+      - sd
+  /sd/disk:
+    get:
+      consumes:
+      - application/json
+      description: DiskCheck
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'OK - Free space: xxxMB (xxGB) / xxxMB (xxGB) | Used: xx%'
+          schema:
+            $ref: '#/definitions/handler.Response'
+      summary: DiskCheck checks the disk usage.
+      tags:
+      - sd
+  /sd/health:
+    get:
+      consumes:
+      - application/json
+      description: HealthCheck
+      responses:
+        "200":
+          description: 'OK '
+          schema:
+            $ref: '#/definitions/handler.Response'
+      summary: HealthCheck shows `OK` as the ping-pong result.
+      tags:
+      - sd
+  /sd/ram:
+    get:
+      consumes:
+      - application/json
+      description: RAMCheck
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'OK - Free space: xxMB (xxGB) / xxMB (xxGB) | Used: xx%'
+          schema:
+            $ref: '#/definitions/handler.Response'
+      summary: RAMCheck checks the disk usage.
+      tags:
+      - sd
+  /sd/version:
+    get:
+      consumes:
+      - application/json
+      description: versionCheck
+      responses:
+        "200":
+          description: 'service version info '
+          schema:
+            $ref: '#/definitions/handler.Response'
+      summary: VersionCheck show the version info as Running status
+      tags:
+      - sd
+  /slack:
+    post:
+      consumes:
+      - application/json
+      description: Handle APP_MENTION event or other call back event sent from slack
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.Response'
+      summary: api
+      tags:
+      - event
+swagger: "2.0"
